@@ -1,6 +1,8 @@
 Advanced Analytics with Spark Source Code
 =========================================
 
+![Advanced Analytics with Spark](aas.png)
+
 ## Clonando o repositório
 
 ```bash
@@ -50,7 +52,6 @@ Code to accompany [Advanced Analytics with Spark](http://shop.oreilly.com/produc
 [Sandy Ryza](https://github.com/sryza), [Uri Laserson](https://github.com/laserson), 
 [Sean Owen](https://github.com/srowen), and [Josh Wills](https://github.com/jwills).
 
-[![Advanced Analytics with Spark](aas.png)]
 
 [Para comprar veja esse link](http://shop.oreilly.com/product/0636920056591.do)
 
@@ -82,4 +83,3 @@ run `mvn package` to compile artifacts into `target/` subdirectories beneath eac
 - Chapter 10: ftp://ftp.ncbi.nih.gov/1000genomes/ftp/phase3/data/HG00103/alignment/HG00103.mapped.ILLUMINA.bwa.GBR.low_coverage.20120522.bam
 - Chapter 11: https://github.com/thunder-project/thunder/tree/v0.4.1/python/thunder/utils/data/fish/tif-stack
 
-[![Build Status](https://travis-ci.org/sryza/aas.png?branch=master)](https://travis-ci.org/sryza/aas)
