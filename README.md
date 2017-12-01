@@ -54,6 +54,13 @@ Executando o exemplo do capitulo 4 - Arvores de Decisão.
 java -jar target/ch04-rdf-2.2.0-jar-with-dependencies.jar 4
 ```
 
+Se não desejar ver a barra de progresso do Spark redirecione o `stderr` para `/dev/null`
+
+```bash
+java -jar target/ch04-rdf-2.2.0-jar-with-dependencies.jar 4  2> /dev/null 
+```
+
+
 Podemos alterar o arquivo JAR gerado para trocar o nivel de log do Spark de INFO para WARN
 
 ```bash
