@@ -13,6 +13,7 @@ git clone git@github.com:joao-parana/aa-spark.git
 
 ## Fazendo o build
 
+### Apenas o POM usado pelos projetos filhos
 
 ```bash
 cd aa-spark
@@ -22,7 +23,20 @@ mvn -Drat.ignoreErrors=true \
     -N clean install
 ```
 
-Exemplo de build/run do capitulo 4 - Arvores de Decisão.
+### Fazendo o build de todos os projetos
+
+Isso pode demorar dezenas de minutos
+
+```bash
+mvn -Drat.ignoreErrors=true \
+    -Dcheckstyle.skip \
+    -Dmaven.test.skip=true \
+    clean package
+```
+
+### Fazendo o build de um projeto específico
+
+Exemplo de build do capitulo 4 - Arvores de Decisão.
 
 ```bash
 cd ch04-rdf 
@@ -32,10 +46,12 @@ mvn -Drat.ignoreErrors=true \
     clean package
 ```
 
-Executando o exmplo do capitulo 4 - Arvores de Decisão.
+### Executando um projeto específico
+
+Executando o exemplo do capitulo 4 - Arvores de Decisão.
 
 ```bash
-java -jar target/ch04-rdf-2.2.0-jar-with-dependencies.jar
+java -jar target/ch04-rdf-2.2.0-jar-with-dependencies.jar 4
 ```
 
 Podemos alterar o arquivo JAR gerado para trocar o nivel de log do Spark de INFO para WARN
