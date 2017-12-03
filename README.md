@@ -144,12 +144,6 @@ df.foreachPartition{records =>
   }
 ```
 
-#### Saindo da sessão Ammonite
-
-Simplesmente tecle CTRL+D
-
-**That's all folks !**
-
 Esta shell é melhor que spark-shell no sentido que:
 * podemos importar pacotes interativamente
 * obter saida Pretty-printed para os objetos com configuração da quantidade máxima de linhas mostradas. Ex.: `repl.pprinter() = repl.pprinter().copy(defaultHeight = 5)`
@@ -161,9 +155,13 @@ Esta shell é melhor que spark-shell no sentido que:
 
 ![Ammonite Editing gif](Editing.gif)
 
+#### Saindo da sessão Ammonite
 
+Simplesmente tecle CTRL+D
 
-Segue abaixo o README original do projeto dos autores do livro.
+**That's all folks !**
+
+Segue abaixo o **README original** do projeto dos autores do livro.
 
 ## README original
 

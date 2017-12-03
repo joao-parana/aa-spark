@@ -1,7 +1,7 @@
 import $ivy.`com.softwaremill.sttp::core:1.0.5`
 import com.softwaremill.sttp._
 implicit val backend = HttpURLConnectionBackend()
-# sttp.get(uri"http://httpbin.org/ip").send()
+// sttp.get(uri"http://httpbin.org/ip").send()
 
 import $ivy.{
           `org.apache.spark::spark-core:2.2.0`,
