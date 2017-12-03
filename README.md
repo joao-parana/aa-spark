@@ -144,7 +144,24 @@ df.foreachPartition{records =>
   }
 ```
 
-Esta shell é melhor que spark-shell no sentido que podemos importar pacotes interativamente e editar em multi-linha
+#### Saindo da sessão Ammonite
+
+Simplesmente tecle CTRL+D
+
+**That's all folks !**
+
+Esta shell é melhor que spark-shell no sentido que:
+* podemos importar pacotes interativamente
+* obter saida Pretty-printed para os objetos com configuração da quantidade máxima de linhas mostradas. Ex.: `repl.pprinter() = repl.pprinter().copy(defaultHeight = 5)`
+* Syntax Highlighting para facilitar a leitura
+* Permite editar em multi-linha (veja gif animado abaixo)
+* Atalhos de teclado: Alt+Left/Right, Shift+Alt+Left/Right, Shift+Up, Tab, Shift+Tab, etc.
+* Undu e Redo
+* Importação de código Scala com `import $file`. Exemplo: `import $file.MyScript, MyScript._` para importar `MyScript.sc`
+
+![Ammonite Editing gif](Editing.gif)
+
+
 
 Segue abaixo o README original do projeto dos autores do livro.
 
