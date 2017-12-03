@@ -9,8 +9,6 @@ Advanced Analytics with Spark Source Code
 git clone git@github.com:joao-parana/aa-spark.git
 ```
 
-
-
 ## Fazendo o build
 
 ### Apenas o POM usado pelos projetos filhos
@@ -69,12 +67,92 @@ vi org/apache/spark/log4j-defaults.properties
 jar -uvf target/ch04-rdf-2.2.0-jar-with-dependencies.jar org/apache/spark/log4j-defaults.properties
 ```
 
+## Playground com Scala
+
+Temos várias opções para usar o **Spark** no modo exploratório.
+
+* spark-shell
+* SBT REPL
+* Scala REPL
+* Ammonite REPL
+* Notebook Jupyter
+
+A opção spark-shell é a padrão e é fornecida pelos desenvolvedores do Spark.
+SBT REPL e Scala REPL é apropriado para quem já tem experiência com Scala.
+Notebook Jupyter é destinado aos problemas de documentar toda uma solução
+de análise exploratória e pode ser usada via Docker clonando este repositório:
+`git clone git@github.com:joao-parana/notebook.git`
+
+A minha opção preferida é o Ammonite REPL que descrevo aqui
+
+### Scala, Spark e Ammonite
+Spark está na versão 2.2.0.
+É necessário instalar a versão scala-2.11.12  do Scala pois é pré-requisito.
+
+O Ammonite é uma shell REPL para Scala com funcionalidades incríveis. 
+
+Para instalar basta executar:
+
+```bash
+sudo curl -L -o /usr/local/bin/amm https://git.io/vdNvV && sudo chmod +x /usr/local/bin/amm && amm
+```
+
+`amm` é o nome do executável que fica em `/usr/local/bin` após a instalação
+
+Você nem precisa ter no seu computador uma certa API ou Framework. Ele mesmo instala de dentro da shell. Veja o exemplo abaixo onde ele baixa via **Apache IVY** o `sttp` que é uma biblioteca com cliente HTTP para Scala e já faz um GET no endereço [http://httpbin.org/ip](http://httpbin.org/ip) 
+
+Este é só um exemplo simples.
+
+```bash
+import $ivy.`com.softwaremill.sttp::core:1.0.5`
+import com.softwaremill.sttp._
+implicit val backend = HttpURLConnectionBackend()
+sttp.get(uri"http://httpbin.org/ip").send()
+```
+
+Você vai ficar impressionado com as funcionalidades deste REPL.
+Veja detalhes em http://ammonite.io/#Ammonite-REPL 
+
+Com ele podemos fazer tudo no terminal (sem Interface gráfica).
+
+Usando o Spark dentro do Ammonite
+
+```scala
+import $ivy.{
+          `org.apache.spark::spark-core:2.2.0`,
+          `org.apache.spark::spark-sql:2.2.0`,
+          `org.apache.spark::spark-yarn:2.2.0`
+  }
+import org.apache.spark.{SparkContext, SparkConf}
+import org.apache.spark.sql.SQLContext
+import org.apache.spark.sql.SparkSession
+
+val conf = new SparkConf().setMaster("local[*]").setAppName("ogasawara")
+val sc = new SparkContext(conf)
+val sqlContext = new SQLContext(sc)
+var i = 0
+// suponha o arquivo MyScript.sc com este conteúdo acima.
+// então você poderá carregar para a memória com:
+import $file.MyScript, MyScript._
+
+// Depois você poderá rodar isso:
+val df = sqlContext.read.json("/tmp/iron-icons-bower.json") // um arquivo JSON qualquer
+df.foreachPartition{records =>
+    records.foreach{
+      record => i += 1; println("i = " + i); println(record)
+    }
+  }
+```
+
+Esta shell é melhor que spark-shell no sentido que podemos importar pacotes interativamente e editar em multi-linha
+
+Segue abaixo o README original do projeto dos autores do livro.
+
 ## README original
 
 Code to accompany [Advanced Analytics with Spark](http://shop.oreilly.com/product/0636920035091.do), by 
 [Sandy Ryza](https://github.com/sryza), [Uri Laserson](https://github.com/laserson), 
 [Sean Owen](https://github.com/srowen), and [Josh Wills](https://github.com/jwills).
-
 
 [Para comprar veja esse link](http://shop.oreilly.com/product/0636920056591.do)
 
@@ -105,4 +183,3 @@ run `mvn package` to compile artifacts into `target/` subdirectories beneath eac
 - Chapter 9: (see `ch09-risk/data/download-all-symbols.sh` script)
 - Chapter 10: ftp://ftp.ncbi.nih.gov/1000genomes/ftp/phase3/data/HG00103/alignment/HG00103.mapped.ILLUMINA.bwa.GBR.low_coverage.20120522.bam
 - Chapter 11: https://github.com/thunder-project/thunder/tree/v0.4.1/python/thunder/utils/data/fish/tif-stack
-

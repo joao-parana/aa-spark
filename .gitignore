@@ -4,3 +4,5 @@ ch04-rdf/src/main/resources/covtype.csv
 ch04-rdf/src/main/resources/.ipynb_checkpoints/
 ch04-rdf/src/main/resources/Untitled.ipynb
 target/
+log-execution-ch04.txt
+
