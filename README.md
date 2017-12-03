@@ -151,6 +151,7 @@ Esta shell é melhor que spark-shell no sentido que:
 * Permite editar em multi-linha (veja gif animado abaixo)
 * Atalhos de teclado: Alt+Left/Right, Shift+Alt+Left/Right, Shift+Up, Tab, Shift+Tab, etc.
 * Undu e Redo
+* Importação de código binário diretamente do **Maven Central** com `import $ivy`
 * Importação de código Scala com `import $file`. Exemplo: `import $file.MyScript, MyScript._` para importar `MyScript.sc`
 
 ![Ammonite Editing gif](Editing.gif)
