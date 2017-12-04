@@ -103,11 +103,19 @@ Você nem precisa ter no seu computador uma certa API ou Framework. Ele mesmo in
 
 Este é só um exemplo simples.
 
-```bash
+```scala
 import $ivy.`com.softwaremill.sttp::core:1.0.5`
 import com.softwaremill.sttp._
 implicit val backend = HttpURLConnectionBackend()
 sttp.get(uri"http://httpbin.org/ip").send()
+```
+
+Outro exemplo: usando scala.meta no Ammonite REPL 
+
+```scala
+import $ivy.`org.scalameta:scalameta_2.11:2.1.2`
+import scala.meta._
+"x + y /* adds x and y */".parse[Term]
 ```
 
 Você vai ficar impressionado com as funcionalidades deste REPL.
