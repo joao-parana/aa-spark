@@ -3,6 +3,12 @@
 // syntax tree (AST) produced from the parsed source code. Macros are invoked to manipulate
 // the AST before the final compilation phases leading to byte-code generation.
 import scala.reflect.runtime.universe._ 
+var expr = q"""
+(x + 1) + 2
+"""
+// expr: Tree = Apply(
+//  Select(Apply(Select(Ident(x), $plus), List(Literal(Constant(1)))), $plus), List(Literal(Constant(2))))
+
 val C = q"class C"
 println(showCode(C))
 println(showRaw(q"class C")) 
@@ -64,6 +70,7 @@ OfflineCodeGen.main(null) // salva o fonte myfile.scala
 import scala.reflect.runtime.currentMirror
 import scala.tools.reflect.ToolBox
 val toolbox = currentMirror.mkToolBox()
+
 // 
 val code = q"""
 println("compiled and run at runtime!")
@@ -101,3 +108,15 @@ tb.typeCheck(tree)
 // scala.tools.reflect.ToolBoxError: reflective compilation has failed: value - is not a member of String
 toolbox.eval(tree)
 // scala.tools.reflect.ToolBoxError: reflective compilation has failed: value - is not a member of String
+
+import org.apache.spark.sql.catalyst.dsl.expressions._
+import org.apache.spark.sql.catalyst.expressions.Literal
+import org.apache.spark.sql.catalyst.plans.logical._
+import org.apache.spark.sql.catalyst.dsl.plans._
+(Literal(1) + Literal(2)
+// There is a conversion from 'symbols to unresolved attributes
+'a.attr
+
+var expr = q"""
+1 + 1 AS a
+"""
